@@ -11,6 +11,38 @@ class NeedForSpeed {
         this.battery = 100;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getBatteryDrain() {
+        return batteryDrain;
+    }
+
+    public void setBatteryDrain(int batteryDrain) {
+        this.batteryDrain = batteryDrain;
+    }
+
+    public int getDistanceDriven() {
+        return distanceDriven;
+    }
+
+    public void setDistanceDriven(int distanceDriven) {
+        this.distanceDriven = distanceDriven;
+    }
+
+    public int getBattery() {
+        return battery;
+    }
+
+    public void setBattery(int battery) {
+        this.battery = battery;
+    }
+
     public boolean batteryDrained() {
         return this.battery < this.batteryDrain;
     }
@@ -39,10 +71,9 @@ class RaceTrack {
     }
 
     public boolean canFinishRace(NeedForSpeed car) {
-        while(!car.batteryDrained() && car.distanceDriven() <= this.distance) {
-            car.drive();
-        }
+        int maxSteps = 100 / car.getBatteryDrain();
+        int maxDistance = maxSteps * car.getSpeed();
 
-        return car.distanceDriven() >= this.distance;
+        return maxDistance >= this.distance;
     }
 }
